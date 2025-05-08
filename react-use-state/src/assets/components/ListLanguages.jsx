@@ -37,6 +37,13 @@ function ListLanguages() {
     ];
     
     let [content,setContent] = useState(languages[0])
+   
+    const setColor =(language) => {
+        setContent(prev =>
+            prev.id === language.id ? null : language
+          );
+        
+      }
     
     return (
 
@@ -45,10 +52,14 @@ function ListLanguages() {
 
                 languages.map((language) => (
                     
-                        <button key={language.id} onClick={() => {
-                            setContent(language)
+                        <button className='btn' key={language.id} onClick={() => {
+                            setColor(language)
                             
-                        }}>{language.title} </button>
+                        }}
+                        style={{backgroundColor: content.id === language.id ? 'yellow' : ' #007bff',
+                            color: content.id === language.id ? 'black' : 'white',
+                        }}
+                        >{language.title} </button>
                 ))
             }
             {
